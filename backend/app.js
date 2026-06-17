@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user');
 
 const booksRoutes = require('./routes/book');
+const path = require('path');
 
 const dns = require('node:dns');
 dns.setServers(["1.1.1.1", "1.0.0.1"]);
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use('/api/auth', userRoutes);
 app.use('/api/books', booksRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
 
