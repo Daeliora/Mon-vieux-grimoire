@@ -74,20 +74,33 @@ exports.modifyBook = (req, res, next) => {
 
       // Nouvelle image envoyée
       if (req.file) {
-        const filename = book.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, (err) => {
-          if (err) {
-            console.log(err);
-          }
 
-          Book.updateOne(
-            { _id: req.params.id },
-            { ...bookObject, _id: req.params.id }
-          )
-            .then(() => res.status(200).json({message: 'Livre modifié !'}))
-            .catch(error => res.status(401).json({ error }));
-        });
+        const oldFilename = book.imageUrl.split('/images/')[1];
 
+        fs.unlink(`images/${oldFilename}`, (err) => {
+
+          if (err) {console.log(err)}
+          const newFilename = req.file.filename.split('.')[0];
+// convertir l'image en webp et la redimensionner
+          sharp(req.file.path)
+            .resize(800)
+            .webp({ quality: 80 })
+            .toFile(`images/${newFilename}.webp`)
+            .then(() => {fs.unlink(req.file.path, () => {
+              Book.updateOne(
+                { _id: req.params.id },
+                {
+                 ...JSON.parse(req.body.book),
+                  imageUrl: `${req.protocol}://${req.get('host')}/images/${newFilename}.webp`,
+                  _id: req.params.id
+                }
+              )
+                .then(() => {res.status(200).json({message: 'Livre modifié !'})})
+                .catch(error => {res.status(401).json({ error })});
+              });
+            })
+            .catch(error => {res.status(500).json({ error })});
+      });
       } else {
         // Pas de nouvelle image
         Book.updateOne(
