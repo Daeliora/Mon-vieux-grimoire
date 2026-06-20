@@ -1,0 +1,175 @@
+# Mon Vieux Grimoire
+
+Projet réalisé dans le cadre de la formation Développeur Web OpenClassrooms.
+
+## Description
+
+Mon Vieux Grimoire est une application de notation de livres permettant aux utilisateurs :
+
+- de créer un compte ;
+- de se connecter ;
+- d'ajouter un livre ;
+- de modifier ou supprimer leurs propres livres ;
+- de noter les livres des autres utilisateurs ;
+- de consulter les livres les mieux notés.
+
+Le front-end est fourni par OpenClassrooms et développé en React.
+Le back-end a été développé avec Node.js, Express et MongoDB.
+
+---
+
+## Technologies utilisées
+
+### Back-end
+
+- Node.js
+- Express
+- MongoDB Atlas
+- Mongoose
+- JWT
+- bcrypt
+- Multer
+- Sharp
+
+### Front-end
+
+- React
+
+---
+
+## Fonctionnalités
+
+### Authentification
+
+- Inscription utilisateur
+- Connexion utilisateur
+- Hachage des mots de passe avec bcrypt
+- Authentification sécurisée avec JWT
+
+### Gestion des livres
+
+- Création d'un livre
+- Consultation des livres
+- Modification d'un livre
+- Suppression d'un livre
+
+### Gestion des images
+
+- Upload avec Multer
+- Compression et conversion des images en WebP avec Sharp
+- Suppression automatique des images inutilisées
+
+### Notation
+
+- Ajout d'une note à un livre
+- Une seule note par utilisateur
+- Calcul automatique de la note moyenne
+- Affichage des 3 livres les mieux notés
+
+---
+
+## Installation
+
+### 1. Cloner le projet
+
+```bash
+git clone https://github.com/VOTRE-PSEUDO/mon-vieux-grimoire.git
+```
+
+### 2. Installer les dépendances
+
+Backend :
+
+```bash
+cd backend
+npm install
+```
+
+Frontend :
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## Variables d'environnement
+
+Créer un fichier `.env` dans le dossier backend :
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+```
+
+---
+
+## Lancer l'application
+
+Backend :
+
+```bash
+cd backend
+nodemon server
+```
+
+Le serveur démarre sur :
+
+```txt
+http://localhost:4000
+```
+
+Frontend :
+
+```bash
+cd frontend
+npm start
+```
+
+L'application est disponible sur :
+
+```txt
+http://localhost:3000
+```
+
+---
+
+## API
+
+### Authentification
+
+| Méthode | Route |
+|----------|----------|
+| POST | /api/auth/signup |
+| POST | /api/auth/login |
+
+### Livres
+
+| Méthode | Route |
+|----------|----------|
+| GET | /api/books |
+| GET | /api/books/:id |
+| GET | /api/books/bestrating |
+| POST | /api/books |
+| PUT | /api/books/:id |
+| DELETE | /api/books/:id |
+| POST | /api/books/:id/rating |
+
+---
+
+## Optimisation des images
+
+Les images envoyées par les utilisateurs sont :
+
+- converties en WebP ;
+- redimensionnées ;
+- compressées avec Sharp ;
+
+afin de respecter les bonnes pratiques Green Code.
+
+---
+
+## Auteur
+
+Projet réalisé par CHANCEREL Elodie dans le cadre de la formation Développeur Web OpenClassrooms.
