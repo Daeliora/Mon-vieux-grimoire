@@ -168,7 +168,7 @@ exports.rateBook = (req, res, next) => {
         0
       );
 
-      book.averageRating = total / book.ratings.length;
+      book.averageRating = Math.round((total / book.ratings.length) * 10) / 10;  // arrondi à une décimale
 
       book.save()
         .then(updatedBook => {res.status(200).json(updatedBook)})
