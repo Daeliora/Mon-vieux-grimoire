@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const mongoose = require('mongoose');
 
@@ -11,8 +13,7 @@ dns.setServers(["1.1.1.1", "1.0.0.1"]);
 
 const app = express();
 
-mongoose.connect('mongodb+srv://Daeliora2:GoTest@cluster0.gmy0xny.mongodb.net',
-)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch((err) => console.log('Connexion à MongoDB échouée !', err));
 
