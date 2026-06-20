@@ -73,7 +73,7 @@ Le back-end a été développé avec Node.js, Express et MongoDB.
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/VOTRE-PSEUDO/mon-vieux-grimoire.git
+git clone https://github.com/Daeliora/Mon-vieux-grimoire.git
 ```
 
 ### 2. Installer les dépendances
